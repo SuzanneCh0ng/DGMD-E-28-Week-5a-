@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment 3: Part 1 & 2</title>
+  </head>
+  <body>
+    <h1>Menu (json)</h1>
+    <ul class="menu" id="menu-json"></ul>
+
+    <h1>Menu (fn object)</h1>
+    <ul class="menu" id="menu-fnobj"></ul>
+  </body>
+  <script>
+    let itemsToPrices1 = {
+      'hotdogs' : 4,
+      'fries' : 3.5,
+      'soda' : 1.5,
+      'sauerkraut' : 1
+    };
+    let itemsToPrices2 = {
+      'menu' : [
+        {'item': 'hotdogs', 'price': 4},
+        {'item': 'fries', 'price': 3.50},
+        {'item': 'soda', 'price': 1.50},
+        {'item': 'sauerkraut', 'price': 1}
+      ]
+    };
+
+    function ItemToPrice(item, price) {
+      this.item = item;
+      this.price = price;
+    }
+    let itemsToPrices3 = [
+      new ItemToPrice('hotdogs', 4),
+      new ItemToPrice('fries', 3.50),
+      new ItemToPrice('soda', 1.50),
+      new ItemToPrice('sauerkraut', 1)
+    ];
+
+    function displayMenuInJson(menuInJson) {
+      let menuUl = document.getElementById('menu-json');
+      for (const itemToPrice of menuInJson['menu']) {
+        let ItemPriceLi = document.createElement("li");
+        ItemPriceLi.textContent = `${itemToPrice.item}: $${itemToPrice.price.toFixed(2)}`;
+        menuUl.appendChild(ItemPriceLi);
+      }
+    }
+
+    function displayMenuInFnObject(menuInFnObject) {
+      let menuUl = document.getElementById('menu-fnobj');
+      for (const itemToPrice of menuInFnObject) {
+        let ItemPriceLi = document.createElement("li");
+        ItemPriceLi.textContent = `${itemToPrice.item}: $${itemToPrice.price.toFixed(2)}`;
+        menuUl.appendChild(ItemPriceLi);
+      }
+    }
+
+    displayMenuInJson(itemsToPrices2);
+    displayMenuInFnObject(itemsToPrices3);
+  </script>
+</html>
